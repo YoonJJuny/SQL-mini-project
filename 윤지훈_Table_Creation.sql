@@ -1,0 +1,62 @@
+CREATE TABLE "HR"."고객정보" 
+   (	"회원번호" CHAR(5 BYTE) NOT NULL ENABLE, 
+	"회원등급" VARCHAR2(20 BYTE) NOT NULL ENABLE, 
+	"가입일" DATE, 
+	"최종방문일" DATE, 
+	"본인인증" VARCHAR2(20 BYTE), 
+	"성별" VARCHAR2(10 BYTE), 
+	"나이" CHAR(2 BYTE), 
+	"배송지도로명" VARCHAR2(200 BYTE), 
+	"배송지지번" VARCHAR2(200 BYTE), 
+	 CONSTRAINT "고객정보_PK" PRIMARY KEY ("회원번호");
+     
+CREATE TABLE "HR"."주문정보" 
+   (	"주문번호" CHAR(16 BYTE) NOT NULL ENABLE, 
+	"순번" NUMBER(2,0) NOT NULL ENABLE, 
+	"주문일시" DATE, 
+	"진행구분" VARCHAR2(20 BYTE) NOT NULL ENABLE, 
+	"배송지" VARCHAR2(200 BYTE), 
+	"상품번호" CHAR(17 BYTE), 
+	"상품명" VARCHAR2(200 BYTE), 
+	"옵션명" VARCHAR2(200 BYTE), 
+	"수량" NUMBER(3,0), 
+	"판매가" NUMBER(8,2), 
+	"배송비" NUMBER(8,3), 
+	"쿠폰할인액" NUMBER(8,2), 
+	"회원주문여부" VARCHAR2(2 BYTE), 
+	"회원번호" CHAR(5 BYTE), 
+	 CONSTRAINT "주문번호_PK" PRIMARY KEY ("주문번호");
+     
+CREATE TABLE "HR"."상품정보" 
+   (	"상품번호" CHAR(17 BYTE) NOT NULL ENABLE, 
+	"상품명" VARCHAR2(150 BYTE) NOT NULL ENABLE, 
+	"업체명" VARCHAR2(150 BYTE) NOT NULL ENABLE, 
+	"카테고리명" VARCHAR2(150 BYTE) NOT NULL ENABLE, 
+	"브랜드명" VARCHAR2(150 BYTE), 
+	"상품구분" VARCHAR2(10 BYTE), 
+	"대표판매가" NUMBER(8,0) NOT NULL ENABLE, 
+	"조건배송비" VARCHAR2(150 BYTE), 
+	"판매상태" VARCHAR2(20 BYTE), 
+	"전시상태" VARCHAR2(2 BYTE), 
+	 CONSTRAINT "상품번호_PK" PRIMARY KEY ("상품번호");
+     
+CREATE TABLE "HR"."결제정보" 
+   (	"주문번호" CHAR(17 BYTE) NOT NULL ENABLE, 
+	"결제번호" CHAR(5 BYTE) NOT NULL ENABLE, 
+	"결제일시" DATE, 
+	"진행구분명" VARCHAR2(6 BYTE) NOT NULL ENABLE, 
+	"결제수단" VARCHAR2(12 BYTE) NOT NULL ENABLE, 
+	"결제금액" NUMBER(8,2) NOT NULL ENABLE, 
+	"카드사" VARCHAR2(15 BYTE), 
+	"할부개월" NUMBER(3,2), 
+	 CONSTRAINT "결제번호_PK" PRIMARY KEY ("결제번호");
+     
+CREATE TABLE "HR"."환불정보" 
+   (	"주문번호" CHAR(17 BYTE) NOT NULL ENABLE, 
+	"환불번호" CHAR(5 BYTE) NOT NULL ENABLE, 
+	"진행구분" VARCHAR2(10 BYTE) NOT NULL ENABLE, 
+	"환불결제수단" VARCHAR2(25 BYTE) NOT NULL ENABLE, 
+	"환불금액" NUMBER(8,2) NOT NULL ENABLE, 
+	"환불할부개월" NUMBER(2,0), 
+	"환불일자" DATE, 
+	 CONSTRAINT "환불번호_PK" PRIMARY KEY ("환불번호");
